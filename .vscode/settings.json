@@ -1,4 +1,23 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/a45038c3-a2c2-4ea3-96a0-b8e07069dc97/resourceGroups/beeResourceGroup/providers/Microsoft.Web/sites/bee-2025",
-    "appService.deploySubpath": "."
+    "python.pythonPath": "/path/to/your/venv/bin/python",  // Path to your virtual environment Python interpreter
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "black",  // Optional: Formatting tool for Python code
+    "python.envFile": "${workspaceFolder}/.env",  // Optional: Path to environment variables if you're using .env
+    "appService.deploySubpath": ".",  // Deploy the entire folder (root folder of the Flask app)
+    "appService.defaultWebAppToDeploy": "/subscriptions/a45038c3-a2c2-4ea3-96a0-b8e07069dc97/resourceGroups/beeResourceGroup/providers/Microsoft.Web/sites/bee-2025",  // Azure Web App ID
+    "appService.python.startupCommand": "python -m flask run --host=0.0.0.0 --port=8000",  // Command to start the Flask app
+    "appService.python.pythonPath": "/path/to/your/venv/bin/python",  // Path to Python in your virtual environment
+    "azure.appService.deploySubpath": ".",  // Deploy the root folder, adjust if your app is in a subfolder
+    "appService.deployToSlotOrASE": false,  // Set to true if you're deploying to a specific slot in Azure
+    "python.testing.unittestEnabled": true,  // Optional: Enable unittest testing framework
+    "python.testing.pytestEnabled": false,  // Optional: Disable pytest if you don't use it
+    "python.testing.nosetestsEnabled": false,  // Optional: Disable nosetests if you don't use it
+    "python.autoComplete.extraPaths": [
+        "./lib"  // Adjust if you have additional library paths
+    ],
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "88"  // Optional: Configure the line length for black formatter
+    ]
 }
