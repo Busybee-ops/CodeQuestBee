@@ -8,251 +8,72 @@
 /* Body Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa; /* Light background */
+    background: url('/static/images/background.jpg') center/cover no-repeat;
     color: #333;
     line-height: 1.6;
 }
 
-/* General Container */
-.container {
-    width: 90%;
-    margin: auto;
-    padding: 30px 0;
+/* Force Navbar Background to Stay Dark */
+.navbar {
+    background-color: #ebe463  !important; /* Dark Grey Background */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Section */
-header {
-    background-color: #007bff; /* Primary blue */
-    color: #fff;
-    text-align: center;
-    padding: 5px 0; /* Tight padding */
-    border-bottom: 1px solid #0056b3; /* Subtle divider */
-    font-size: 1rem; /* Smaller font size */
-    height: 40px; /* Set fixed height */
-    line-height: 40px; /* Vertically center text */
-    display: flex; /* Flexbox to center content */
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
+.navbar-nav .nav-link.active {
+    background-color: #aaaaa8  !important; /* Highlight active tab */
+    border-radius: 5px; 
 }
 
-header h1 {
-    font-size: 1.4rem; /* Smaller title font */
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0; /* Remove extra margin */
+.navbar-fixed {
+    background-color: #ebe463 !important; /* Ensures navbar background does not change */
 }
 
-header p {
-    font-size: 0.8rem; /* Smaller text size */
-    font-weight: 300;
-    margin: 0; /* Remove default margin */
+
+/* Content Styling */
+#main-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* About Me Section */
-section.bg-primary {
-    background-color: #0056b3; /* Darker blue */
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
-}
-
-section.bg-primary h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-section.bg-primary p {
-    font-size: 1.1rem;
-    font-weight: 300;
-}
-
-/* Projects Section */
-.projects {
-    padding: 60px 0;
-    background-color: #fff;
-}
-
-.projects h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    color: #333;
-}
-
-/* Common Card Styles */
+/* Card Styles */
 .card {
-    border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-}
-
-.card img {
-    border-radius: 10px;
-    height: 200px;
-    object-fit: cover;
-}
-
-.card-body {
-    padding: 20px;
-    text-align: center;
-}
-
-.card h5 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.card p {
-    font-size: 1rem;
-    color: #666;
-}
-
-.card .btn {
-    margin-top: 15px;
-    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Card hover effect */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
 }
 
-/* Project Card Specific Styles */
-.project-card {
-    margin: 20px;
-}
-
-/* Contact Section */
-.contact {
-    background-color: #f0f4f8;
-    padding: 60px 0;
-}
-
-.contact h2 {
-    font-size: 2.5rem;
-    color: #007bff;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* Common Form Styles */
+/* Forms */
 form {
-    background-color: #fff;
-    padding: 40px;
+    background: #fff;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: auto;
 }
 
-.form-group label {
-    font-weight: bold;
-    color: #333;
-}
-
-.form-control {
-    border-radius: 8px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    font-size: 1rem;
-}
-
-.btn-warning {
-    background-color: #ff9f00;
-    border-color: #ff9f00;
-    font-size: 1.1rem;
-    padding: 12px 25px;
-    width: 100%;
-    border-radius: 8px;
-}
-
-.btn-warning:hover {
-    background-color: #e68900;
-    border-color: #e68900;
-}
-
-/* Footer Section */
-footer {
-    background-color: #222;
-    color: #ddd;
-    text-align: center;
-    padding: 30px 0;
-    font-size: 1rem;
-}
-
-footer p {
-    margin: 0;
-}
-
-/* Utility Classes */
-.text-center {
-    text-align: center !important;
-}
-
-.py-5 {
-    padding-top: 50px !important;
-    padding-bottom: 50px !important;
-}
-
-.mb-4 {
-    margin-bottom: 30px !important;
-}
-
-.text-primary {
-    color: #007bff !important;
-}
-
-.text-warning {
-    color: #ff9f00 !important;
-}
-
-.text-white {
-    color: #ffffff !important;
-}
-
-/* Button Hover Effects */
+/* Buttons */
 .btn {
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .btn:hover {
     transform: translateY(-2px);
 }
 
-/* Add smooth transitions to links */
-a {
-    transition: color 0.3s ease-in-out;
-}
-
-a:hover {
-    color: #0056b3;
-}
-
-/* Main Content Styling */
-#main-content {
-    margin-top: 20px; /* Adds space between content and top */
-    padding: 20px; /* Padding around content */
-    background-color: #f8f9fa; /* Light background for the content */
-    border-radius: 8px; /* Optional rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
-    font-size: 16px; /* Uniform font size */
-    line-height: 1.5; /* Consistent line height */
-    color: #333; /* Dark text color for readability */
-}
-
-/* You can add some uniform styles for forms and result sections */
-form,
-#main-content .result {
-    margin-bottom: 20px; /* Adds space between form and other content */
-}
-
-/* Active Nav Link Styling */
-.nav-link.active {
-    color: #fff !important;
-    background-color: #007bff !important;
+/* Footer */
+footer {
+    background: #222;
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
 }

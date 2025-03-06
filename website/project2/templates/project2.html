@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h4>Weather Information</h4>
+        <form id="weather-form" action="/project2/" method="POST">
+            <div class="mb-3">
+                <label for="location" class="form-label">Enter City, State:</label>
+                <input type="text" id="location" name="location" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Get Weather</button>
+        </form>
+{% endblock %}

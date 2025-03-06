@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +9,9 @@
     <script src="{{ url_for('static', filename='js/global.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,14 +31,11 @@
                         <a class="nav-link" href="#" data-url="/contact/" onclick="loadTab('/contact/', this)">Contact</a>
                     </li>
                 </ul>
-            </div>
+            </div> 
         </div>
     </nav>  
-            
     <div id="main-content" class="container mt-4">
-        <!-- Default message for Home page content -->
-        <p class="mt-6">Welcome to my portfolio. Click on a tab to load content.</p>
+        {% block content %}{% endblock %}
     </div>
 </body>
- 
 </html>

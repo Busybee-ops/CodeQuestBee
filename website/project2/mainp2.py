@@ -28,13 +28,13 @@ def weather_form():
                 error_message = "Weather data not found. Please check your inputs."
                 return f"""
                     <p class="text-danger">{error_message}</p>
-                    <a href="#" onclick="loadTab('/project2/', document.querySelector('[data-url=\'/project2/\']'))" class="btn btn-primary mt-3">Try Again</a>
+                   <a href="#" onclick="resetForm()" class="btn btn-primary mt-3">Weather Again</a>
                 """  # Return error message as HTML snippet
         except Exception as e:
             return f"""
                 <p class="text-danger">Error retrieving weather data. Please try again.</p>
-              <a href="#" onclick="loadTab('/project2/', document.querySelector('[data-url=\'/project2/\']'))" class="btn btn-primary mt-3">Weather Again</a>
+             <a href="#" onclick="resetForm()" class="btn btn-primary mt-3">Get Weather</a>
             """  # Return error message as HTML snippet
 
     # If the method is GET, just render the weather form
-    return render_template('indexp2.html')
+    return render_template('project2.html')

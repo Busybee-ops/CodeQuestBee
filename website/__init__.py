@@ -7,25 +7,15 @@ from website.contact.main_contact import contact  # Importing contact blueprint
 from flask import Blueprint
 import logging
 import os
-
-def configure_cors(app):
-    CORS(app, resources={
-        r"/project1/*": {"origins": "*"},
-        r"/project2/*": {"origins": "*"},
-        r"/contact/*": {"origins": "*"}
-    })
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default_secret_key')
-
-    configure_cors(app)
-
-    # Register the blueprints for Project 1 and Project 2
-    app.register_blueprint(project1, url_prefix='/project1')  # All routes under '/project1' will use the project1 blueprint
-    app.register_blueprint(project2, url_prefix='/project2')  # All routes under '/project2' will use the project2 blueprint
-    app.register_blueprint(contact, url_prefix='/contact')
-    app.register_blueprint(views)  # Register the views blueprint
-
+    app.secret_key = os.urandom(24)  # Set a secret key for session management
+    CORS(app)
+    app.register_blueprint(views)
+    app.register_blueprint(project1, url_prefix='/project1')
+    app.register_blueprint(project2, url_prefix='/project2')
+    app.register_blueprint(contact, url_prefix='/contact')  
     return app
