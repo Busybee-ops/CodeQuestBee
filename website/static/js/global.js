@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Handle dynamic tab loading
-    function loadTab(url, clickedElement) {
-        event.preventDefault();
+    function loadTab(url, clickedElement, event) {
+        if (event) {
+            event.preventDefault();
+        }
         history.pushState(null, "", url);
 
         fetch(url)
@@ -13,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Update active tab
                 document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
-                clickedElement.classList.add("active");
+                if (clickedElement) {
+                    clickedElement.classList.add("active");
+                }
             })
             .catch(error => console.error("Error loading content:", error));
     }
@@ -21,8 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Attach click event to all navigation links to handle tab loading
     document.querySelectorAll(".nav-link").forEach(link => {
         link.addEventListener("click", function (event) {
-            event.preventDefault();
-            loadTab(this.dataset.url, this);
+            loadTab(this.dataset.url, this, event);
         });
     });
 

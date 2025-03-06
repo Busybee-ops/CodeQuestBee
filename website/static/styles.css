@@ -20,13 +20,6 @@ body {
     padding: 30px 0;
 }
 
-/* Remove default Bootstrap margins */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* Header Section */
 header {
     background-color: #007bff; /* Primary blue */
@@ -55,8 +48,6 @@ header p {
     font-weight: 300;
     margin: 0; /* Remove default margin */
 }
-
-
 
 /* About Me Section */
 section.bg-primary {
@@ -90,46 +81,49 @@ section.bg-primary p {
     color: #333;
 }
 
-.project-card {
-    margin: 20px;
-}
-
-.project-card .card {
+/* Common Card Styles */
+.card {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
 }
 
-.project-card img {
+.card img {
     border-radius: 10px;
     height: 200px;
     object-fit: cover;
 }
 
-.project-card .card-body {
+.card-body {
     padding: 20px;
     text-align: center;
 }
 
-.project-card h5 {
+.card h5 {
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
 
-.project-card p {
+.card p {
     font-size: 1rem;
     color: #666;
 }
 
-.project-card .btn {
+.card .btn {
     margin-top: 15px;
     font-weight: bold;
 }
 
-.project-card:hover {
+.card:hover {
     transform: translateY(-5px); /* Card hover effect */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Card Specific Styles */
+.project-card {
+    margin: 20px;
 }
 
 /* Contact Section */
@@ -145,7 +139,8 @@ section.bg-primary p {
     margin-bottom: 30px;
 }
 
-.contact form {
+/* Common Form Styles */
+form {
     background-color: #fff;
     padding: 40px;
     border-radius: 10px;
@@ -154,12 +149,12 @@ section.bg-primary p {
     margin: auto;
 }
 
-.contact .form-group label {
+.form-group label {
     font-weight: bold;
     color: #333;
 }
 
-.contact .form-control {
+.form-control {
     border-radius: 8px;
     padding: 12px;
     border: 1px solid #ccc;
@@ -167,7 +162,7 @@ section.bg-primary p {
     font-size: 1rem;
 }
 
-.contact .btn-warning {
+.btn-warning {
     background-color: #ff9f00;
     border-color: #ff9f00;
     font-size: 1.1rem;
@@ -176,7 +171,7 @@ section.bg-primary p {
     border-radius: 8px;
 }
 
-.contact .btn-warning:hover {
+.btn-warning:hover {
     background-color: #e68900;
     border-color: #e68900;
 }
@@ -220,11 +215,6 @@ footer p {
     color: #ffffff !important;
 }
 
-.card {
-    border-radius: 10px;
-    overflow: hidden;
-}
-
 /* Button Hover Effects */
 .btn {
     transition: all 0.3s ease-in-out;
@@ -242,12 +232,17 @@ a {
 a:hover {
     color: #0056b3;
 }
+
+/* Main Content Styling */
 #main-content {
     margin-top: 20px; /* Adds space between content and top */
     padding: 20px; /* Padding around content */
     background-color: #f8f9fa; /* Light background for the content */
     border-radius: 8px; /* Optional rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+    font-size: 16px; /* Uniform font size */
+    line-height: 1.5; /* Consistent line height */
+    color: #333; /* Dark text color for readability */
 }
 
 /* You can add some uniform styles for forms and result sections */
@@ -256,9 +251,8 @@ form,
     margin-bottom: 20px; /* Adds space between form and other content */
 }
 
-/* Consistent font styling */
-#main-content {
-    font-size: 16px; /* Uniform font size */
-    line-height: 1.5; /* Consistent line height */
-    color: #333; /* Dark text color for readability */
+/* Active Nav Link Styling */
+.nav-link.active {
+    color: #fff !important;
+    background-color: #007bff !important;
 }
