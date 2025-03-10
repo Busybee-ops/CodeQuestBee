@@ -18,23 +18,16 @@ def weather_form():
             weather_data = response.json()
 
             if weather_data.get("cod") == 200:
-                weather_info = f"Weather in {location}: {weather_data['weather'][0]['description']}, " \
-                               f"Temperature: {weather_data['main']['temp']}K"
-                return f"""
-                    <h4>{weather_info}</h4>
-                    <a href="#" onclick="loadTab('/project2/', document.querySelector('[data-url=\'/project2/\']'))" class="btn btn-primary mt-3">Get Weather Again</a>
-                """  # Return weather data as HTML snippet
+                weather_info = {
+                    'weather': weather_data['weather'][0]['description'],
+                    'temperature': weather_data['main']['temp']
+                }
+                return jsonify(weather_info)
             else:
                 error_message = "Weather data not found. Please check your inputs."
-                return f"""
-                    <p class="text-danger">{error_message}</p>
-                   <a href="#" onclick="resetForm()" class="btn btn-primary mt-3">Weather Again</a>
-                """  # Return error message as HTML snippet
+                return jsonify({'error': error_message}), 404
         except Exception as e:
-            return f"""
-                <p class="text-danger">Error retrieving weather data. Please try again.</p>
-             <a href="#" onclick="resetForm()" class="btn btn-primary mt-3">Get Weather</a>
-            """  # Return error message as HTML snippet
+            return jsonify({'error': 'Error retrieving weather data. Please try again.'}), 500
 
     # If the method is GET, just render the weather form
     return render_template('project2.html')

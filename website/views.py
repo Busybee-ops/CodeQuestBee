@@ -1,9 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_cors import CORS
-from website.project1.mainp1 import project1 as project1_module
-from website.project2.mainp2 import project2 as project2_module
-from website.contact.main_contact import contact as contact_module
 from flask import Blueprint
 
 views = Blueprint('views', __name__)
@@ -22,14 +19,6 @@ def home():
     session['last_tab'] = 'home'
     return render_template('home.html')
 
-# Define the route for the contact page
-@views.route('/contact')
-def contact():
-    if not session.get('visited_landing') or session.get('last_tab') != 'contact':
-        return redirect(url_for('views.base'))  # Redirect to landing page if accessed directly
-    session['last_tab'] = 'contact'
-    return render_template('contact.html')
-
 # Define the route for the project1 page
 @views.route('/project1')
 def project1():
@@ -45,6 +34,14 @@ def project2():
         return redirect(url_for('views.base'))  # Redirect to landing page if accessed directly
     session['last_tab'] = 'project2'
     return render_template('project2.html')
+
+# Define the route for the game_ttt page
+@views.route('/game_ttt')
+def game_ttt():
+    if not session.get('visited_landing') or session.get('last_tab') != 'game_ttt':
+        return redirect(url_for('views.base'))
+    session['last_tab'] = 'game_ttt'
+    return render_template('game_ttt.html')
 
 @views.route('/update_last_tab', methods=['POST'])
 def update_last_tab():

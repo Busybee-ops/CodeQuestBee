@@ -52,10 +52,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     method: "POST",
                     body: formData
                 })
-                .then(response => response.text())
+                .then(response => response.json())
                 .then(data => {
-                    updateMainContent(data); // Inject form submission result into main content
-                    // No need to call attachFormHandler again here since it's already done after content is loaded
+                    // Display the result
+                    const resultDiv = document.getElementById('result');
+                    if (resultDiv) {
+                        resultDiv.innerHTML = generateResultHTML(data);
+                    }
+                    // Reset the form
+                    form.reset();
                 })
                 .catch(error => console.error("Error submitting form:", error));
             });
@@ -70,13 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
         loadTab(window.location.pathname, document.querySelector(".nav-link[data-url='" + window.location.pathname + "']"));
     };
 
-     // Function to reset the form and clear the result
-     window.resetForm = function() {
+    // Function to reset the form and clear the result
+    window.resetForm = function() {
         const form = document.getElementsByTagName('form')[0];
         if (form) { 
             form.reset();
         }
-        const result = document.getElementById("main-content");
+        const result = document.getElementById("result");
         if (result) {
             result.innerHTML = '';
         }
@@ -97,4 +102,46 @@ function updateMainContent(data) {
 
     // Clear current content in #main-content
     mainContent.innerHTML = newContent;
+}
+
+// Function to generate the result HTML based on the data
+function generateResultHTML(data) {
+    console.log(data);
+    if (data.liters && data.ounces && data.bottles) {
+        return `
+            <div class="card text-white bg-success mb-3" style="max-width: 60rem;">
+                <div class="card-header">Here you go</div>
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text">Recommended Water Intake: ${data.liters.toFixed(2)} Liters or ${data.ounces.toFixed(2)} Ounces or ${data.bottles} Bottles</p>
+                </div>
+            </div>
+        `;
+    } else if (data.weather && data.temperature) {
+        return `
+           <div class="card text-white bg-success mb-3" style="max-width: 60rem;">
+                <div class="card-header">Weather Information</div>
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text">Weather: ${data.weather}, Temperature: ${data.temperature}°F</p>
+                </div>
+            </div>
+        `;
+
+    } else if (data.name && data.email && data.message) {
+        return `
+        <div class="card text-white bg-success mb-3" style="max-width: 60rem;">
+        <div class="card-header">Contact</div>
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <p class="card-text">Thank you for contacting us, ${data.name}. We will get back to you soon!</p>
+        </div>
+    </div>
+        `;
+    }
+    else if (data.error) {
+        return `<p class="text-danger">${data.error}</p>`;
+    } else {
+        return `<p class="text-danger">Unexpected result format.</p>`;
+    }
 }
