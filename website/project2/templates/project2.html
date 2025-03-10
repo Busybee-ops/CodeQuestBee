@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-light p-5 rounded shadow-sm">
+    <h4 class="card-title">Weather Information</h4>
+    <p>Enter Location to get the current weather conditions.</p>
+    <form id="weather-form" action="/project2/" method="POST">
+        <div class="mb-3">
+            <label for="location" class="form-label">Enter City, State:</label>
+            <input type="text" id="location" name="location" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Get Weather</button>
+    </form>
+    <br/>
+    <div id="result" class="mt-4"></div>
+</div>
+{% endblock %}

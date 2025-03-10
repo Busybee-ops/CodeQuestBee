@@ -1,0 +1,11 @@
+weight,activity_level,temperature,age,gender,recommended_intake
+150,sedentary,70,25,male,2.5
+180,moderate,85,30,female,3.0
+200,active,90,35,male,3.5
+140,light,75,28,female,2.8
+160,sedentary,80,40,male,2.6
+170,moderate,88,32,male,3.1
+130,active,92,27,female,3.2
+155,light,78,29,male,2.7
+165,sedentary,82,45,female,2.9
+175,moderate,87,33,male,3.3

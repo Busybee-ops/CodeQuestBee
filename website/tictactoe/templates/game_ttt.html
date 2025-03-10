@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center">Tic-Tac-Toe</h1>
+            <div class="alert alert-dismissible alert-secondary text-center" role="alert">
+                <p class="player-icons">
+                    <span class="player-icon player1">
+                        <i class="fas fa-desktop fa-spin large-icon" style="color: #1158a3;"></i> Computer
+                    </span>
+                    <span class="vs" style="font-size: 1.5em; margin: 0 10px;">vs</span>
+                    <span class="player-icon player2">
+                        <i class="fas fa-user fa-bounce large-icon" style="color: #c93011;"></i> You 
+                    </span>
+                </p>
+                <button id="reset" class="btn btn-light mt-1" onclick="resetGame()">Reset</button>
+            </div>
+            <div class="text-center mt-3">
+                <button id="easy" class="btn btn-primary" onclick="setDifficulty('Easy')">Easy</button>
+                <button id="medium" class="btn btn-primary" onclick="setDifficulty('Medium')">Medium</button>
+                <button id="hard" class="btn btn-primary" onclick="setDifficulty('Hard')">Hard</button>
+            </div>
+            <br/>
+            <div class="d-flex justify-content-center">
+                <div class="tic-tac-toe-board" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 300px; margin: auto;">
+                    <button class="tic-tac-toe-cell btn btn-light" id="0" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="1" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="2" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="3" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="4" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="5" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="6" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="7" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                    <button class="tic-tac-toe-cell btn btn-light" id="8" onclick="handleMove(this)" style="width: 100px; height: 100px; font-size: 2em; cursor: pointer; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 2px solid #dee2e6; transition: background-color 0.3s, transform 0.2s;"></button>
+                </div>
+            </div>
+          
+            <div id="message-container" class="alert alert-success text-center mt-3 custom-alert" role="alert" style="display: none;">
+                <p id="message"></p>
+            </div>
+        </div>
+       
+        <div class="col-md-4">
+            <h2>Instructions</h2>
+            <ul>
+                <li>Player 1 starts the game</li>
+                <li>Click on a cell to place your mark</li>
+                <li>Player 2's turn after Player 1</li>
+                <li>Continue taking turns until a player wins or the game is a draw</li>
+                <li>Click the Reset button to start a new game</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
+{% endblock %}

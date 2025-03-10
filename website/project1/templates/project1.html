@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-light p-5 rounded shadow-sm">
+        <h4 class="card-title">Water Intake Calculator</h4>
+        <form id="water-intake-form" action="/project1/" method="POST">
+            <div class="mb-3">
+                <label for="weight" class="form-label">Weight (lbs):</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-weight"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="weight" name="weight" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="activity_level" class="form-label">Activity Level:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-running"></i></span>
+                    </div>
+                    <select class="form-control" id="activity_level" name="activity_level">
+                        <option value="sedentary">Sedentary</option>
+                        <option value="light">Light</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="active">Active</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="temperature" class="form-label">Temperature (°F):</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-thermometer-half"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="temperature" name="temperature" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                    </div>
+                    <select class="form-control" id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Calculate</button>
+        </form>
+        <br/>
+        <div id="result" class="mt-4"></div>
+</div>
+{% endblock %}
