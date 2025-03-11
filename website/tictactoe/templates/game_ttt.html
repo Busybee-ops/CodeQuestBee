@@ -18,7 +18,7 @@
                 <button id="reset" class="btn btn-light mt-1" onclick="resetGame()">Reset</button>
             </div>
             <div class="text-center mt-3">
-                <button id="easy" class="btn btn-primary" onclick="setDifficulty('Easy')">Easy</button>
+                <button id="easy" class="btn btn-primary active" onclick="setDifficulty('Easy')">Easy</button>
                 <button id="medium" class="btn btn-primary" onclick="setDifficulty('Medium')">Medium</button>
                 <button id="hard" class="btn btn-primary" onclick="setDifficulty('Hard')">Hard</button>
             </div>
@@ -54,5 +54,5 @@
         </div>
     </div>
 </div>
-<script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ttt.js', _external=True, _scheme='https') }}"></script>
 {% endblock %}

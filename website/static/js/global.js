@@ -27,6 +27,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     },
                     body: JSON.stringify({ last_tab: clickedElement.dataset.url.replace('/', '') })
                 });
+
+                // Execute any script tags in the loaded content
+                executeScripts(data);
+
+                // Manually load the ttt.js script if the Tic-Tac-Toe page is loaded
+                if (url.includes('/tictactoe/')) {
+                    loadScript('/static/js/ttt.js', function() {
+                        if (typeof initializeGame === 'function') {
+                            initializeGame();
+                        } else {
+                            console.error("initializeGame function is not defined.");
+                        }
+                    });
+                }
             })
             .catch(error => console.error("Error loading content:", error));
     };
@@ -102,6 +116,43 @@ function updateMainContent(data) {
 
     // Clear current content in #main-content
     mainContent.innerHTML = newContent;
+}
+
+// Function to execute script tags in the loaded content
+function executeScripts(data) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = data;
+    const scripts = tempDiv.querySelectorAll('script');
+    scripts.forEach(script => {
+        if (script.src) {
+            // Check if the script is already added
+            if (!document.querySelector(`script[src="${script.src}"]`)) {
+                const newScript = document.createElement('script');
+                newScript.type = script.type || 'text/javascript';
+                newScript.src = script.src;
+                document.head.appendChild(newScript);
+            }
+        } else {
+            // Check if the inline script is already added
+            const inlineScriptExists = Array.from(document.querySelectorAll('script'))
+                .some(existingScript => existingScript.textContent === script.textContent);
+            if (!inlineScriptExists) {
+                const newScript = document.createElement('script');
+                newScript.type = script.type || 'text/javascript';
+                newScript.textContent = script.textContent;
+                document.head.appendChild(newScript);
+            }
+        }
+    });
+}
+
+// Function to load a script dynamically
+function loadScript(src, callback) {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    script.onload = callback;
+    document.head.appendChild(script);
 }
 
 // Function to generate the result HTML based on the data

@@ -5,19 +5,23 @@ import random
 tictactoe = Blueprint('tictactoe', __name__, template_folder='templates', static_folder='static')
 
 def check_winner(board):
+    winning_combinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
     for player in ['X', 'O']:
-        for i in range(3):
-            if all([board[i*3+j] == player for j in range(3)]):
-                return player
-            if all([board[j*3+i] == player for j in range(3)]):
-                return player
-        if all([board[i*3+i] == player for i in range(3)]):
-            return player
-        if all([board[i*3+2-i] == player for i in range(3)]):
-            return player
+        for combination in winning_combinations:
+            if all([board[i] == player for i in combination]):
+                return player, combination
     if all([cell != '' for cell in board]):
-        return 'Tie'
-    return None
+        return 'Tie', []
+    return None, []
 
 def make_move(board, move, player):
     if board[move] == '':
@@ -25,7 +29,7 @@ def make_move(board, move, player):
     return board
 
 def minimax(board, depth, is_maximizing, player, opponent):
-    winner = check_winner(board)
+    winner, _ = check_winner(board)
     if winner == player:
         return 1
     elif winner == opponent:
@@ -76,9 +80,9 @@ def game():
         move = data.get('move')
         if move is not None:
             board = make_move(board, move, player)
-            winner = check_winner(board)
+            winner, winning_combination = check_winner(board)
             if winner:
-                return jsonify({'board': board, 'player': player, 'winner': winner})
+                return jsonify({'board': board, 'player': player, 'winner': winner, 'winningCombination': winning_combination})
         
         # Computer's move
         if difficulty == "Easy":
@@ -94,9 +98,9 @@ def game():
             computer_move = get_best_move(board, 'O')
         
         board = make_move(board, computer_move, 'O')
-        winner = check_winner(board)
+        winner, winning_combination = check_winner(board)
         if winner:
-            return jsonify({'board': board, 'player': 'X', 'winner': winner})
+            return jsonify({'board': board, 'player': 'X', 'winner': winner, 'winningCombination': winning_combination})
         
-        return jsonify({'board': board, 'player': 'X', 'winner': None})
+        return jsonify({'board': board, 'player': 'X', 'winner': None, 'winningCombination': []})
     return render_template('game_ttt.html')
